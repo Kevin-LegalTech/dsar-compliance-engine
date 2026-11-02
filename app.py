@@ -1,14 +1,11 @@
 import streamlit as st
 import pandas as pd
 from datetime import datetime, timedelta
-
-# Page Configuration
 st.set_page_config(page_title="Enterprise DSAR Compliance Engine", page_icon="🛡️", layout="wide")
-
 st.title("🛡️ Interactive Enterprise DSAR Compliance & SLA Engine")
 st.markdown("An interactive legal-tech tool designed to intake, track, and analyze Data Subject Access Requests (DSARs) against **GDPR / DPDPA** statutory timelines.")
+st.caption("⚖️ **Statutory & Legal Disclaimer:** All names, request IDs, and entity data utilized within this demonstration environment are entirely hypothetical mock records generated solely for illustrating DSAR compliance tracking, SLA risk evaluation, and privacy operations workflows.")
 
-# --- RECRUITER / HR CONTEXT EXPANDER (Ensures HR sees your narrative instantly) ---
 with st.expander("⚖️ About This Project & Legal Architecture (For Recruiters & Reviewers)", expanded=False):
     st.markdown("""
     ### Executive Summary & Legal Vision
@@ -35,7 +32,7 @@ if "dsar_records" not in st.session_state:
             "Requester_Name": "Kevin Sabu",
             "Request_Type": "Access",
             "Request_Purpose": "Full record of processing activities (RoPA) and personal data categories processed under GDPR Art. 15 / DPDPA transparency mandates.",
-            "Date_Received": (current_date - timedelta(days=10)).strftime("%Y-%m-%d"),
+            "Date_Received": (current_date - timedelta(days=10)).strftime("%d-%m-%Y"),
             "Status": "Open"
         },
         {
@@ -43,7 +40,7 @@ if "dsar_records" not in st.session_state:
             "Requester_Name": "Priya Nair",
             "Request_Type": "Deletion",
             "Request_Purpose": "Exercising right to erasure ('Right to be Forgotten') regarding inactive marketing profile, telemetry logs, and user credentials.",
-            "Date_Received": (current_date - timedelta(days=28)).strftime("%Y-%m-%d"),
+            "Date_Received": (current_date - timedelta(days=28)).strftime("%d-%m-%Y"),
             "Status": "Open"
         },
         {
@@ -51,7 +48,7 @@ if "dsar_records" not in st.session_state:
             "Requester_Name": "Rahul Sharma",
             "Request_Type": "Correction",
             "Request_Purpose": "Rectification of inaccurate financial transaction history and outdated residential billing records under statutory correction rights.",
-            "Date_Received": (current_date - timedelta(days=35)).strftime("%Y-%m-%d"),
+            "Date_Received": (current_date - timedelta(days=35)).strftime("%d-%m-%Y"),
             "Status": "Open"
         },
         {
@@ -59,7 +56,7 @@ if "dsar_records" not in st.session_state:
             "Requester_Name": "Ananya Menon",
             "Request_Type": "Portability",
             "Request_Purpose": "Data portability request for secure, machine-readable JSON export of user-uploaded digital assets and account history.",
-            "Date_Received": (current_date - timedelta(days=5)).strftime("%Y-%m-%d"),
+            "Date_Received": (current_date - timedelta(days=5)).strftime("%d-%m-%Y"),
             "Status": "Open"
         },
         {
@@ -67,7 +64,7 @@ if "dsar_records" not in st.session_state:
             "Requester_Name": "David Miller",
             "Request_Type": "Access",
             "Request_Purpose": "Completed access request regarding past customer support communications and ticketing transcripts.",
-            "Date_Received": (current_date - timedelta(days=40)).strftime("%Y-%m-%d"),
+            "Date_Received": (current_date - timedelta(days=40)).strftime("%d-%m-%Y"),
             "Status": "Closed"
         }
     ]
