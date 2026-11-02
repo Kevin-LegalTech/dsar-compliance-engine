@@ -3,10 +3,23 @@ import pandas as pd
 from datetime import datetime, timedelta
 
 # Page Configuration
-st.set_page_config(page_title="Interactive DSAR Compliance Engine", page_icon="🛡️", layout="wide")
+st.set_page_config(page_title="Enterprise DSAR Compliance Engine", page_icon="🛡️", layout="wide")
 
 st.title("🛡️ Interactive Enterprise DSAR Compliance & SLA Engine")
 st.markdown("An interactive legal-tech tool designed to intake, track, and analyze Data Subject Access Requests (DSARs) against **GDPR / DPDPA** statutory timelines.")
+
+# --- RECRUITER / HR CONTEXT EXPANDER (Ensures HR sees your narrative instantly) ---
+with st.expander("⚖️ About This Project & Legal Architecture (For Recruiters & Reviewers)", expanded=False):
+    st.markdown("""
+    ### Executive Summary & Legal Vision
+    Under global privacy frameworks like the **EU GDPR** and India’s **Digital Data Protection Act (DPDPA)**, enterprises face strict statutory windows (typically 30 days) to fulfill Data Subject Access Requests (DSARs). Manually tracking these via spreadsheets creates severe regulatory risk.
+    
+    ### The Legal Engineering Approach (Cross-Functional Collaboration)
+    * **My Role (Legal Architect & Product Owner):** As a legal professional, I conceptualized the workflow, defined the 30-day statutory countdown rules, structured the risk-flagging logic (*On Track, At Risk, Breached*), and mapped out how privacy requests should be analyzed.
+    * **Technical Collaboration:** I collaborated with software engineering peers (from the Codefacia team) who helped translate these legal compliance requirements into clean Python and Streamlit code. This tool represents modern legal engineering: lawyers defining compliance needs and partnering with technical teams to build scalable solutions.
+    """)
+
+st.divider()
 
 # Sidebar Configuration
 st.sidebar.header("Statutory Parameters")
@@ -93,14 +106,11 @@ with col_form:
     st.subheader("🔍 Request Lookup & Analysis Wizard")
     st.markdown("Select a Request ID to automatically retrieve the corresponding requester, statutory type, and contextual purpose.")
     
-    # Extract existing IDs for selection
     existing_ids = [r["Request_ID"] for r in st.session_state.dsar_records]
     selected_lookup_id = st.selectbox("Select Request ID", existing_ids)
     
-    # Find matching record for auto-fill display
     matched_record = next(r for r in st.session_state.dsar_records if r["Request_ID"] == selected_lookup_id)
     
-    # Display auto-filled parameters corresponding to the selected ID
     st.text_input("Requester's Full Name (Auto-filled)", value=matched_record["Requester_Name"], disabled=True)
     st.text_input("Request Type (Auto-filled)", value=matched_record["Request_Type"], disabled=True)
     st.text_area("Request Purpose & Statutory Context (Auto-filled)", value=matched_record["Request_Purpose"], disabled=True)
@@ -114,7 +124,6 @@ with col_report:
     processed_data = process_records(st.session_state.dsar_records)
     df = pd.DataFrame(processed_data)
     
-    # Filter for the currently selected record's analytics
     selected_row = df[df["Request_ID"] == selected_lookup_id].iloc[0]
     
     col_a, col_b = st.columns(2)
@@ -127,7 +136,6 @@ with col_report:
         
     st.divider()
     
-    # Dynamic status warning banner
     status_text = selected_row["SLA_Status"]
     if "BREACHED" in status_text:
         st.error(f"🚨 **SLA Evaluation:** {status_text}")
@@ -145,7 +153,6 @@ st.subheader("📋 Master Compliance Audit Log")
 display_columns = ["Request_ID", "Requester_Name", "Request_Type", "Request_Purpose", "Date_Received", "Deadline_Date", "Days_Remaining", "SLA_Status"]
 st.dataframe(df[display_columns], use_container_width=True)
 
-# Add New Request Expander (Retained as requested)
 with st.expander("➕ Ingest a New DSAR Request to Pipeline"):
     with st.form("new_request_form"):
         col_x, col_y = st.columns(2)
