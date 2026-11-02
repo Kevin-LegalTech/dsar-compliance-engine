@@ -1,11 +1,13 @@
 import streamlit as st
 import pandas as pd
 from datetime import datetime, timedelta
+
 st.set_page_config(page_title="Enterprise DSAR Compliance Engine", page_icon="🛡️", layout="wide")
 st.title("🛡️ Interactive Enterprise DSAR Compliance & SLA Engine")
 st.markdown("An interactive legal-tech tool designed to intake, track, and analyze Data Subject Access Requests (DSARs) against **GDPR / DPDPA** statutory timelines.")
 st.caption("⚖️ **Statutory & Legal Disclaimer:** All names, request IDs, and entity data utilized within this demonstration environment are entirely hypothetical mock records generated solely for illustrating DSAR compliance tracking, SLA risk evaluation, and privacy operations workflows.")
 st.divider()
+
 with st.expander("⚖️ About This Project & Legal Architecture (For Recruiters & Reviewers)", expanded=False):
     st.markdown("""
     ### Executive Summary & Legal Vision
@@ -75,7 +77,7 @@ def process_records(records):
     current_date = datetime.now().date()
     
     for rec in records:
-        received_date = datetime.strptime(rec["Date_Received"], "%Y-%m-%d").date()
+        received_date = datetime.strptime(rec["Date_Received"], "%d-%m-%Y").date()
         deadline_date = received_date + timedelta(days=statutory_days)
         days_remaining = (deadline_date - current_date).days
         
@@ -90,7 +92,7 @@ def process_records(records):
             sla_status = "On Track"
             
         row = rec.copy()
-        row["Deadline_Date"] = deadline_date.strftime("%Y-%m-%d")
+        row["Deadline_Date"] = deadline_date.strftime("%d-%m-%Y")
         row["Days_Remaining"] = days_remaining
         row["SLA_Status"] = sla_status
         processed.append(row)
@@ -173,7 +175,7 @@ with st.expander("➕ Ingest a New DSAR Request to Pipeline"):
                     "Requester_Name": new_name,
                     "Request_Type": new_type,
                     "Request_Purpose": new_purpose,
-                    "Date_Received": new_date.strftime("%Y-%m-%d"),
+                    "Date_Received": new_date.strftime("%d-%m-%Y"),
                     "Status": new_status
                 }
                 st.session_state.dsar_records.append(new_entry)
