@@ -18,7 +18,7 @@ To be fully transparent: **I am a legal professional and advocate, not a traditi
 
 ## 🚀 Live Application
 You can test and interact with the live compliance engine here:
-👉 [Insert your Streamlit Live URL here]
+👉 https://dsar-compliance-engine-vu62b5ayhxreqpkamhgsph.streamlit.app/
 
 ---
 *Bridging legal operations and technical collaboration.*
