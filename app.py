@@ -5,7 +5,7 @@ st.set_page_config(page_title="Enterprise DSAR Compliance Engine", page_icon="�
 st.title("🛡️ Interactive Enterprise DSAR Compliance & SLA Engine")
 st.markdown("An interactive legal-tech tool designed to intake, track, and analyze Data Subject Access Requests (DSARs) against **GDPR / DPDPA** statutory timelines.")
 st.caption("⚖️ **Statutory & Legal Disclaimer:** All names, request IDs, and entity data utilized within this demonstration environment are entirely hypothetical mock records generated solely for illustrating DSAR compliance tracking, SLA risk evaluation, and privacy operations workflows.")
-
+st.divider()
 with st.expander("⚖️ About This Project & Legal Architecture (For Recruiters & Reviewers)", expanded=False):
     st.markdown("""
     ### Executive Summary & Legal Vision
