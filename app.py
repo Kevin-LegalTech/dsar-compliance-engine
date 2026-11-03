@@ -15,7 +15,7 @@ with st.expander("⚖️ About This Project & Legal Architecture (For Recruiters
     
     ### The Legal Engineering Approach (Cross-Functional Collaboration)
     * **My Role (Legal Architect & Product Owner):** As a legal professional, I conceptualized the workflow, defined the 30-day statutory countdown rules, structured the risk-flagging logic (*On Track, At Risk, Breached*), and mapped out how privacy requests should be analyzed.
-    * **Technical Collaboration:** I collaborated with software engineering peers (from the Codefacia team) who helped translate these legal compliance requirements into clean Python and Streamlit code. This tool represents modern legal engineering: lawyers defining compliance needs and partnering with technical teams to build scalable solutions.
+    * **Technical Collaboration:** I collaborated with software engineering peers ( the CodeFascia team) who helped translate these legal compliance requirements into clean Python and Streamlit code. This tool represents modern legal engineering: lawyers defining compliance needs and partnering with technical teams to build scalable solutions.
     """)
 
 st.divider()
